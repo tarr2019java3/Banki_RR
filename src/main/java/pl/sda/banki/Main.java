@@ -1,10 +1,17 @@
 package pl.sda.banki;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
         BankAccount acc1 = new BankAccount(1,"BankDlaBogatych",43211, 2832832);
-        BankAccount acc2 = new BankAccount(2,"BankNowoczesny",232321,3233233;
+        BankAccount acc2 = new BankAccount(2,"BankNowoczesny",232321,3233233);
         BankAccount acc3 = new BankAccount(3,"Bank",4332221,42324555);
         BankAccount acc4 = new BankAccount(4,"BigBank",444444,5444333);
 
@@ -21,6 +28,22 @@ public class Main {
         System.out.println("Saldo konta: "+user1.getBank().getBalance());
 
 
+        List<User> users = new ArrayList<User>();
+           users.add(user1);
+           users.add(user2);
+           users.add(user3);
+           users.add(user4);
+
+           ObjectMapper objectMapper = new ObjectMapper();
+
+
+           try {
+
+            objectMapper.writeValue(new File("user.JSON"),users);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
